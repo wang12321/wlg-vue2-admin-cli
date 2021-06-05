@@ -27,9 +27,6 @@ ff init <name>
 ```
 
 
-![](https://upload-images.jianshu.io/upload_images/26056473-4d61235b348cbaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240#id=rS8hl&originHeight=624&originWidth=1134&originalType=binary&status=done&style=none)
-
-
 直接会运行打开项目
 
 
