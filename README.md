@@ -85,7 +85,7 @@ npm install @sentry/integrations
 
 
 - logo: 'component', // 配置logo 只处理了svg的
-- title: 'Vue Admin Zonst', // 配置title
+- title: 'Vue Admin FF', // 配置title
 - tagsView: true, // 配置导航标签
 - IsSearch: false, // 配置菜单搜索
 - breadcrumb: false, // 配置面包屑

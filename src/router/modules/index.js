@@ -1,5 +1,5 @@
 export default {
-  path: '/zonstMD',
+  path: '/FF',
   redirect: '/404',
   hidden: true
 }

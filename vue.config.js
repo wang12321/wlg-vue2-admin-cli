@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-// const name = defaultSettings.title || 'vue Admin Zonst' // page title
+// const name = defaultSettings.title || 'vue Admin FF' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -43,7 +43,7 @@ module.exports = {
     if (process.env.NODE_ENV.indexOf('production') > -1) {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
     }
-    const name = defaultSettings.title || 'vue Admin Zonst'
+    const name = defaultSettings.title || 'vue Admin FF'
     const resolve = {
       alias: {
         '@': path.join(__dirname, 'src')

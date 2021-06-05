@@ -1,6 +1,6 @@
 module.exports = {
   logo: 'component', // 配置logo 只处理了svg的
-  title: 'Vue Admin Zonst', // 配置title
+  title: 'Vue Admin FF', // 配置title
   breadcrumb: false, // 配置面包屑
   IsSearch: false, // 配置菜单搜索
   tagsView: false, // 配置导航标签
