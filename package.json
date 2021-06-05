@@ -1,8 +1,8 @@
 {
-  "name": "template",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "template",
-  "author": "ff",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "scripts": {
     "dev": "vue-cli-service serve",
     "dev:sw": "vue-cli-service serve --mode sw",
