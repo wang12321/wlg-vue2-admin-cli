@@ -1,12 +1,13 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const autoRouter = require('ff-auto-router/lib/router-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-// const name = defaultSettings.title || 'vue Admin FF' // page title
+// const name = defaultSettings.title || 'vue Admin Zonst' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -39,11 +40,20 @@ module.exports = {
     before: require('./mock/mock-server.js')
   },
   configureWebpack(config) {
+    config.plugins = [
+      ...config.plugins,
+      // eslint-disable-next-line new-cap
+      new autoRouter({
+        pages: 'src/views/autoRouter',
+        importPrefix: '@/views/autoRouter',
+        routePath: 'src/router/routes.js'
+      })
+    ]
     // 关闭生产环境console
     if (process.env.NODE_ENV.indexOf('production') > -1) {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
     }
-    const name = defaultSettings.title || 'vue Admin FF'
+    const name = defaultSettings.title || 'vue Admin Zonst'
     const resolve = {
       alias: {
         '@': path.join(__dirname, 'src')
@@ -90,7 +100,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

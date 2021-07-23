@@ -19,6 +19,13 @@
 <script>
 export default {
   name: 'User',
+  meta: {
+    title: '用户管理',
+    icon: 'form',
+    permissionArray: [1, 2, 3],
+    sortIndex: 1,
+    newTime: '2022-05-20'
+  },
   data() {
     return {
       pageData: { total: 100, page: 1, rows: 20 },
