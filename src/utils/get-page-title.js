@@ -1,5 +1,5 @@
 
-export const title = 'Vue Admin Zonst'
+export const title = 'Vue Admin FF'
 export const logo = 'component'
 
 export default function getPageTitle(pageTitle) {

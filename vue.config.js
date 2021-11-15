@@ -49,7 +49,7 @@ module.exports = {
     if (process.env.NODE_ENV.indexOf('production') > -1) {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
     }
-    const name = 'vue Admin Zonst'
+    const name = 'vue Admin FF'
     const resolve = {
       alias: {
         '@': path.join(__dirname, 'src')
