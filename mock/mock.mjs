@@ -1,5 +1,18 @@
-import myKoa from 'ff-koa/lib/mock.js'
-const router = myKoa.router
+import Koa from 'koa'
+const app = new Koa()
+import KoaRouter from 'koa-router'
+const router = new KoaRouter()
+import cors from 'koa2-cors'
+import bodyparser from 'koa-bodyparser'
+app.use(bodyparser())
+
+// 跨域
+app.use(cors({
+  origin: function(ctx) {
+    // 这里用 headers 和 header 属性皆可
+    return ctx.header.origin
+  }
+}))
 
 const tokens = {
   superadmin: {
@@ -52,7 +65,7 @@ router.get('/user/gamelist', ctx => {
 // 登入
 router.post('/user/login', ctx => {
   const { username } = ctx.request.body
-  const token = tokens[username]
+  const token = tokens[username] || { token: 'admin-token' }
   ctx.body = fhcode(token)
 })
 
@@ -92,7 +105,6 @@ router.post('/new/user/info', ctx => {
   const info = users[token]
   ctx.body = fhcode(info)
 })
-
 function fhcode(obj, msg, code) {
   return {
     errno: code || '0',
@@ -100,3 +112,6 @@ function fhcode(obj, msg, code) {
     data: obj || {}
   }
 }
+app.use(router.routes()) // 启动路由
+app.use(router.allowedMethods())
+app.listen(9000, console.log('application is start at port 9000'))

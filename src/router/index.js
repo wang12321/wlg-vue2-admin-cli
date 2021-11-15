@@ -13,43 +13,41 @@ import Layout from '@/layout'
  */
 export const constantRoutes = [
   {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
-  {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
+  // {
+  //   path: '/home',
+  //   component: () => import('@/views/autoRouter/home/index'),
+  //   hidden: true
+  // },
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/404',
     component: Layout,
-    redirect: '/dashboard',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      path: '/404',
+      name: '404',
+      component: () => import('@/views/404'),
+      meta: {
+        title: '错误',
+        isShowHead: 'b',
+        lefttext: '返回首页'
+      }
     }]
   }
 ]
 export const asyncRouterMap = [
   ...routes,
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ]
 
 const createRouter = () => new Router({

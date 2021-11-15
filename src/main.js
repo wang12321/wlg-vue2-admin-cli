@@ -1,11 +1,5 @@
 import Vue from 'vue'
-
-import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-
+import 'vant/lib/index.css'
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -15,11 +9,15 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import * as filters from './filters' // global filters
+import Vant from 'vant'
+// rem转换
+import '@/utils/rem.js'
 
-// set ElementUI lang to EN
-// Vue.use(ElementUI, { locale })
-// 如果想要中文版 element-ui，按如下方式声明
-Vue.use(ElementUI)
+import Navigation from 'vue-navigation'
+
+Vue.use(Navigation, { router })
+
+Vue.use(Vant)
 
 // register global utility filters
 Object.keys(filters).forEach(key => {
@@ -27,13 +25,6 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
-
-// 引入 vue-ele-component-zonst css
-import 'vue-ele-component-zonst/lib/index/style/index.css'
-// 全部引入 vue-ele-component-zonst js
-import VueEleComponentZonst from 'vue-ele-component-zonst'
-// 在ElementUI后调用
-Vue.use(ElementUI).use(VueEleComponentZonst)
 
 new Vue({
   el: '#app',

@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path')
-const autoRouter = require('ff-auto-router/lib/router-webpack-plugin')
+const autoRouter = require('ff-auto-router/lib/mobile-router-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -49,7 +49,7 @@ module.exports = {
     if (process.env.NODE_ENV.indexOf('production') > -1) {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
     }
-    const name = 'vue Admin FF'
+    const name = 'vue mobile Zonst'
     const resolve = {
       alias: {
         '@': path.join(__dirname, 'src')

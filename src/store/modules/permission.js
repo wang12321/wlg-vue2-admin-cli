@@ -12,28 +12,12 @@ function hasPermission(roles, route) {
     return true
   }
 }
-
-// 左侧菜单排序
-const compare = function(prop) {
-  return function(obj1, obj2) {
-    const val1 = obj1[prop]
-    const val2 = obj2[prop]
-    if (val1 < val2) {
-      return -1
-    } else if (val1 > val2) {
-      return 1
-    } else {
-      return 0
-    }
-  }
-}
 /**
  * Filter asynchronous routing tables by recursion
  * @param routes asyncRoutes
  * @param roles
  */
 export function filterAsyncRoutes(routes, roles) {
-  routes = routes.sort(compare('index'))
   const res = []
   routes.forEach(route => {
     const tmp = { ...route }
@@ -63,13 +47,7 @@ const actions = {
   // 根据权限生成动态路由
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      console.log(1111, roles)
-
       const accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
-      console.log(22222, asyncRouterMap)
-
-      console.log(22222, accessedRoutes)
-
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

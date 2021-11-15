@@ -5,7 +5,7 @@
  * @update by:
  */
 import axios from 'axios'
-import { Message } from 'element-ui'
+import { Toast } from 'vant'
 
 const service = axios.create({
   headers: {}
@@ -29,11 +29,8 @@ service.interceptors.response.use(
     const res = response.data
 
     if (res.errno !== '0') {
-      Message({
-        message: res.message || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
+      Toast.fail(res.message || 'Error')
+
       // sentry预留位置1 ---- 请不要删除
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
@@ -41,11 +38,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+    Toast.fail(error.message || 'Error')
     // sentry预留位置2 ---- 请不要删除
     return Promise.reject(error)
   }
