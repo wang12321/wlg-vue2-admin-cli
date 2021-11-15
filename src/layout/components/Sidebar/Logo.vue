@@ -1,13 +1,9 @@
 <template>
-  <div class="sidebar-logo-container" :class="{'collapse':collapse}" :style="{'background':!Layout?navbarBackground:variables.menuBg }">
+  <div class="sidebar-logo-container" :class="{'collapse':collapse}" :style="{'background':navbarBackground}">
     <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <svg-icon v-if="logo" :icon-class="logo" class="sidebar-logo sidebar-logo-collapse" :style="{'color':!Layout?navbarColor:variables.menuText}" />
-        <h1 v-else class="sidebar-title" :style="{'color':!Layout?navbarColor:variables.menuText}">{{ title }} </h1>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <svg-icon v-if="logo" :icon-class="logo" class="sidebar-logo" :style="{'color':!Layout?navbarColor:variables.menuText}" />
-        <h1 class="sidebar-title" :style="{'color':!Layout?navbarColor:variables.menuText}">{{ title }} </h1>
+      <router-link class="sidebar-logo-link" to="/">
+        <svg-icon v-if="logo" :icon-class="logo" class="sidebar-logo sidebar-logo-collapse" :style="{'color':navbarColor}" />
+        <h1 class="sidebar-title" :style="{'color':navbarColor}">{{ title }} </h1>
       </router-link>
     </transition>
   </div>
@@ -15,6 +11,7 @@
 
 <script>
 import variables from '@/styles/variables.scss'
+import { title, logo } from '@/utils/get-page-title'
 
 export default {
   name: 'SidebarLogo',
@@ -31,19 +28,16 @@ export default {
   },
   computed: {
     logo() {
-      return this.$store.state.settings.logo
+      return logo
     },
     navbarBackground() {
-      return this.$store.state.settings.navbarBackground
+      return variables.navbarBackground
     },
     navbarColor() {
-      return this.$store.state.settings.navbarColor
+      return variables.navbarColor
     },
     title() {
-      return this.$store.state.settings.title
-    },
-    Layout() {
-      return this.$store.state.settings.Layout
+      return title
     },
     variables() {
       return variables

@@ -3,14 +3,14 @@
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="onlyOneChild.name" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" :new-time="new Date(onlyOneChild.meta.newTime)" />
+          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </app-link>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" :new-time="new Date(item.meta.newTime)" />
+        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -26,7 +26,7 @@
 
 <script>
 import path from 'path'
-import { isExternal } from '@/utils/validate'
+import { isExternal } from '@/utils'
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'

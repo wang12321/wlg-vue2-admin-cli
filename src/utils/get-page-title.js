@@ -1,6 +1,6 @@
-import defaultSettings from '@/settings'
 
-const title = defaultSettings.title || 'Vue Admin FF'
+export const title = 'Vue Admin Zonst'
+export const logo = 'component'
 
 export default function getPageTitle(pageTitle) {
   if (pageTitle) {

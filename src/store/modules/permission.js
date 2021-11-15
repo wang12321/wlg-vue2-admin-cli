@@ -63,7 +63,13 @@ const actions = {
   // 根据权限生成动态路由
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
+      console.log(1111, roles)
+
       const accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
+      console.log(22222, asyncRouterMap)
+
+      console.log(22222, accessedRoutes)
+
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

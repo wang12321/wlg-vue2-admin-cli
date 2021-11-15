@@ -1,34 +1,23 @@
 /**
  * @author ff
- * @date 2021/4/28
- * @Description:api接口管理
+ * @date 2021/7/29
+ * @Description: 接口请求配置按模块划分
  * @update by:
  */
 
-import myserver from '@/services/getRequest'
-
-const user = {
-  login: {
-    url: 'user/login',
-    type: 'post'
+import request from './request'
+import apiURL from './apiURL'
+const accounts = apiURL[process.env.VUE_APP_BASE_API]
+// 模块划分
+const userUrl = accounts['user']
+export const user = {
+  login(params) {
+    return request.post(`${userUrl}/user/login`, params)
   },
-  getInfo: {
-    url: 'user/info',
-    type: 'get'
+  getInfo(params) {
+    return request.post(`${userUrl}/user/info`, params)
   },
-  gamelist: {
-    url: 'user/gamelist',
-    type: 'get'
-  },
-  logout: {
-    url: 'user/logout',
-    type: 'post'
-  },
-  getPageMenu: {
-    url: 'user/menu',
-    type: 'post'
+  logout(params) {
+    return request.post(`${userUrl}/user/logout`, params)
   }
-
 }
-myserver.postData('user', user)
-export default myserver

@@ -10,11 +10,10 @@ export default {
     title: {
       type: String,
       default: ''
-    },
-    newTime: {}
+    }
   },
   render(h, context) {
-    const { icon, title, newTime } = context.props
+    const { icon, title } = context.props
     const vnodes = []
 
     if (icon) {
@@ -26,11 +25,7 @@ export default {
     }
 
     if (title) {
-      if (newTime && newTime.getTime() > new Date().getTime()) {
-        vnodes.push(<span slot='title'>{(title)}<span style='color: red;display: inline-block;margin-top: -10px;padding:0 5px;'>New!</span></span>)
-      } else {
-        vnodes.push(<span slot='title'>{(title)}</span>)
-      }
+      vnodes.push(<span slot='title'>{(title)}</span>)
     }
     return vnodes
   }

@@ -1,64 +1,48 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="Layout">
-      <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-      <sidebar class="sidebar-container" />
-      <div class="main-container">
-        <div :class="{'fixed-header':fixedHeader}">
-          <navbar />
-          <tags-view v-if="needTagsView" />
-        </div>
-        <app-main />
+    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <el-header style="height: 50px;padding: 0">
+      <div class="fixed-header-layout">
+        <navbar />
       </div>
-    </div>
-    <div v-else>
-      <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-      <el-header style="height: 50px;padding: 0">
-        <div :class="{'fixed-header-layout':fixedHeader}">
-          <navbar />
-        </div>
-      </el-header>
-      <div>
-        <sidebar class="sidebar-container" style="margin-top: 50px" />
-        <div class="main-container">
-          <app-main />
-        </div>
+    </el-header>
+    <div>
+      <sidebar class="sidebar-container" style="margin-top: 50px" />
+      <div class="main-container">
+        <section class="app-main-layout">
+          <transition name="fade-transform" mode="out-in">
+            <router-view :key="key" />
+          </transition>
+        </section>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
 
 export default {
   name: 'Layout',
   components: {
     Navbar,
-    Sidebar,
-    AppMain,
-    TagsView
+    Sidebar
   },
   mixins: [ResizeMixin],
   computed: {
-    LayoutClass() {
-      return this.isCollapse ? 'aside-sidebar' : 'aside-sidebar-min'
+    key() {
+      return this.$route.path
     },
     isCollapse() {
       return this.sidebar.opened
-    },
-    Layout() {
-      return this.$store.state.settings.Layout
     },
     sidebar() {
       return this.$store.state.app.sidebar
     },
     device() {
       return this.$store.state.app.device
-    },
-    fixedHeader() {
-      return this.$store.state.settings.fixedHeader
     },
     classObj() {
       return {
@@ -67,9 +51,6 @@ export default {
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
-    },
-    needTagsView() {
-      return this.$store.state.settings.tagsView
     }
   },
   methods: {
@@ -82,9 +63,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "~@/styles/mixin.scss";
-
   @import "~@/styles/variables.scss";
-
   .app-wrapper {
     position: relative;
     width: 100%;
@@ -144,5 +123,27 @@ export default {
     .fixed-header+.app-main {
       padding-top: 100px;
     }
+  }
+  .app-main-layout{
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+  }
+  .fixed-header+.app-main-layout {
+    padding-top: 90px;
+  }
+
+  .app-main {
+    /*50 = navbar  */
+    min-height: calc(100vh);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+  }
+  .fixed-header+.app-main {
+    padding-top: 90px;
   }
 </style>

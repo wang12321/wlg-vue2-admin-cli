@@ -12,11 +12,20 @@ $menuHover:#263445;
 $subMenuBg:#1f2d3d;
 $subMenuHover:#001528;
 
-$sideBarWidth: 230px;
+$sideBarWidth: 210px;
+$navbarBackground: #1f2834; // 配置导航栏背景颜色
+$navbarColor: #fff; // 配置导航栏字体颜色
+
+$textColor:#333; // 一级文本颜色
+$textColorSecond:#666; // 二级文本颜色
+$textColorThree:#999; // 三级文本颜色
+$textActiveColor:#409eff; // 文本选中颜色
+$lineColor:#e1e1e1; // 线条颜色
 
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
+  mainColor: $mainColor;
   menuText: $menuText;
   menuActiveText: $menuActiveText;
   subMenuActiveText: $subMenuActiveText;
@@ -25,4 +34,11 @@ $sideBarWidth: 230px;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
+  navbarBackground: $navbarBackground;
+  navbarColor: $navbarColor;
+  textColor:$textColor;
+  textColorSecond:$textColorSecond;
+  textColorThree:$textColorThree;
+  textActiveColor:$textActiveColor;
+  lineColor:$lineColor;
 }

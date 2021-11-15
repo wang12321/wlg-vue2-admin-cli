@@ -4,6 +4,9 @@
 
 <script>
 export default {
-  name: 'Index'
+  name: 'Index',
+  created() {
+    console.log(4444, this.$router)
+  }
 }
 </script>

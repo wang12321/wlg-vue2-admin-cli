@@ -7,37 +7,14 @@
 
 const development = {
   UnifiedLogin: 'http://login.xq5.com',
-  user: '/apics/'
-}
-const developmentsw = {
-  UnifiedLogin: 'http://login.xq668.com',
-  user: '/apiswcs/'
-}
-const developmentnew = {
-  UnifiedLogin: 'http://login.xq556.com',
-  user: '/apinewcs/'
-
+  user: 'http://127.0.0.1:9000' // 这里是域名（http://apics/） 使用mock数据才这样表述
 }
 const production = {
   UnifiedLogin: 'http://login.xq5.com',
-  user: '/api/'
-
-}
-const productionnew = {
-  UnifiedLogin: 'http://login.xq556.com',
-  user: '/apinew/'
-
-}
-const productionsw = {
-  UnifiedLogin: 'http://login.xq668.com',
-  user: '/apisw/'
+  user: 'http://127.0.0.1:9000'
 
 }
 module.exports = {
   development,
-  developmentsw,
-  developmentnew,
-  production,
-  productionnew,
-  productionsw
+  production
 }

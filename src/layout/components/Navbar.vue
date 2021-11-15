@@ -1,19 +1,13 @@
 <template>
   <div class="navbar" :style="{'background':navbarBackground }">
-    <div v-if="!Layout && showLogo" style="width: 210px;position: absolute">
+    <div class="logo">
       <logo />
     </div>
-    <div :class="LayoutClass">
+    <div class="navbarLogo">
       <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-      <breadcrumb v-if="breadcrumb" class="breadcrumb-container" />
       <div class="right-menu">
         <template v-if="device!=='mobile'">
-          <search v-if="searchShow" id="header-search" class="right-menu-item" :style="{'color':navbarColor }" />
           <screenfull id="screenfull" class="right-menu-item hover-effect" :style="{'color':navbarColor }" />
-          <div v-if="isSwitchEnvironment" class="right-menu-item hover-effect" @click="switchAction">
-            <i v-if="!isSwitch" class="el-icon-user-solid" :style="{'color':navbarColor }" />
-            <i v-else class="el-icon-user-solid" :style="{'color':'red' }" />
-          </div>
         </template>
         <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
           <div class="avatar-wrapper" :style="{'color':navbarColor }">
@@ -33,24 +27,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
-import Search from '@/components/HeaderSearch'
 import Logo from './Sidebar/Logo'
-import { setIsUseMasterApiKey, getIsUseMasterApiKey } from '@/utils/auth'
+import variables from '@/styles/variables.scss'
 
 export default {
   components: {
-    Breadcrumb,
     Hamburger,
     Screenfull,
-    Search,
     Logo
   },
   data() {
     return {
-      isSwitch: process.env.NODE_ENV.indexOf('development') > -1 && getIsUseMasterApiKey() === 'true'
     }
   },
   computed: {
@@ -59,39 +48,14 @@ export default {
       'name',
       'device'
     ]),
-    LayoutClass() {
-      return !this.Layout && this.showLogo ? 'navbarLogo' : ''
-    },
-    showLogo() {
-      return this.$store.state.settings.sidebarLogo
-    },
-    breadcrumb() {
-      return this.$store.state.settings.breadcrumb
-    },
-    searchShow() {
-      return this.$store.state.settings.IsSearch
-    },
-    Layout() {
-      return this.$store.state.settings.Layout
-    },
     navbarBackground() {
-      return this.$store.state.settings.navbarBackground
+      return variables.navbarBackground
     },
     navbarColor() {
-      return this.$store.state.settings.navbarColor
-    },
-    isSwitchEnvironment() {
-      return this.$store.state.settings.isSwitchEnvironment
+      return variables.navbarColor
     }
   },
   methods: {
-    switchAction() {
-      if (process.env.NODE_ENV.indexOf('development') > -1) {
-        this.isSwitch = !this.isSwitch
-        setIsUseMasterApiKey(this.isSwitch)
-        window.location.reload()
-      }
-    },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
@@ -105,7 +69,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/variables.scss";
-
+.logo{
+  width: $sideBarWidth;
+  position: absolute
+}
 .select {
   ::v-deep .el-input--suffix .el-input__inner {
     padding-right: 30px;
@@ -115,7 +82,7 @@ export default {
 }
 
 .navbarLogo {
-  padding-left: 210px;
+  padding-left: $sideBarWidth;
 }
 
 .navbar {

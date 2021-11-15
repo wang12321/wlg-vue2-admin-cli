@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import variables from '@/styles/variables.scss'
+
 export default {
   name: 'Hamburger',
   props: {
@@ -25,7 +27,7 @@ export default {
   },
   computed: {
     fill() {
-      return this.$store.state.settings.navbarColor
+      return variables.navbarColor
     }
   },
   methods: {
