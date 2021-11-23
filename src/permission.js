@@ -43,6 +43,7 @@ router.beforeEach(async(to, from, next) => {
           NProgress.done()
         }
       }
+      //动态ID--预留(务删)
     }
   } else {
     /* has no token*/
