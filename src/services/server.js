@@ -36,8 +36,8 @@ service.interceptors.response.use(
     setTimeout(() => {
       store.commit('user/SET_BTNLOADING', false)
     }, 500)
-    const res = response.data
 
+    const res = response.data
     if (Number(res.errno) !== 0) {
       Message({
         message: '响应拦截：' + res.message || 'Error',
