@@ -3,6 +3,8 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
     sourceType: 'module'
+    // ecmaVersion: 2018,
+    // ecmaFeatures: { modules: true },
   },
   env: {
     browser: true,
@@ -10,7 +12,8 @@ module.exports = {
     es6: true,
   },
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
-
+  // extends: ['plugin:vue/recommended', 'eslint:recommended','plugin:sonarjs/recommended'],
+  // plugins: ["sonarjs"],
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {

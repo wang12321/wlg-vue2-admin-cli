@@ -5,7 +5,8 @@ import { resetRouter } from '@/router'
 const getDefaultState = () => {
   return {
     token: getToken(),
-    name: ''
+    name: '',
+    btnLoading: false // 全局请求状态
   }
 }
 
@@ -20,6 +21,9 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_BTNLOADING: (state, loading) => {
+    state.btnLoading = loading
   }
 }
 

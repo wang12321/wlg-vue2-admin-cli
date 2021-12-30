@@ -6,10 +6,12 @@ import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
+import { clearPending } from '@/services/requestfun'
 
 const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
+  clearPending()
   // start progress bar
   NProgress.start()
   // set page title
@@ -43,7 +45,6 @@ router.beforeEach(async(to, from, next) => {
           NProgress.done()
         }
       }
-      //动态ID--预留(务删)
     }
   } else {
     /* has no token*/

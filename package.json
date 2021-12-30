@@ -1,8 +1,8 @@
 {
-  "name": "{{name}}",
+  "name": "name",
   "version": "1.0.0",
-  "description": "{{description}}",
-  "author": "{{author}}",
+  "description": "description",
+  "author": "author",
   "scripts": {
     "mock": "cd mock && node --experimental-modules ./mock.mjs",
     "dev:mock": "concurrently \"vue-cli-service serve\" \"npm run mock\"",
@@ -22,6 +22,7 @@
     "concurrently": "^6.2.0",
     "core-js": "3.6.5",
     "element-ui": "2.13.2",
+    "eslint-plugin-sonarjs": "^0.10.0",
     "ff-auto-router": "^1.1.0",
     "ff-koa": "^1.0.0",
     "fuse.js": "^6.4.6",
@@ -32,7 +33,7 @@
     "path-to-regexp": "2.4.0",
     "screenfull": "4.2.0",
     "vue": "2.6.10",
-    "vue-ele-component-zonst": "^1.0.2",
+    "vue-ele-component-zonst": "^1.3.0",
     "vue-router": "3.0.6",
     "vuex": "3.1.0"
   },
