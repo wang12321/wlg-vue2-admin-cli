@@ -68,15 +68,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/variables.scss";
-.logo{
+.logo {
+  position: absolute;
   width: $sideBarWidth;
-  position: absolute
 }
+
 .select {
+
   ::v-deep .el-input--suffix .el-input__inner {
-    padding-right: 30px;
     height: 33px;
+    padding-right: 30px;
     line-height: 33px;
   }
 }
@@ -86,16 +87,16 @@ export default {
 }
 
 .navbar {
+  position: relative;
   height: 50px;
   overflow: hidden;
-  position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
 
   .hamburger-container {
-    line-height: 46px;
-    height: 100%;
     float: left;
+    height: 100%;
+    line-height: 46px;
     cursor: pointer;
     transition: background .3s;
     -webkit-tap-highlight-color: transparent;
@@ -125,8 +126,8 @@ export default {
 
     .right-menu-item {
       display: inline-block;
-      padding: 0 8px;
       height: 100%;
+      padding: 0 8px;
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
@@ -145,22 +146,22 @@ export default {
       margin-right: 30px;
 
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
+        margin-top: 5px;
 
         .user-avatar {
-          cursor: pointer;
           width: 40px;
           height: 40px;
+          cursor: pointer;
           border-radius: 10px;
         }
 
         .el-icon-caret-bottom {
-          cursor: pointer;
           position: absolute;
-          right: -20px;
           top: 25px;
+          right: -20px;
           font-size: 12px;
+          cursor: pointer;
         }
       }
     }

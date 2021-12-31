@@ -35,6 +35,15 @@ module.exports = {
       errors: true
     }
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `  // 进行配置时候 有新旧之分
+        @import '@/styles/variables.scss';   //这里注意 有个;不会报错
+        `
+      }
+    }
+  },
   configureWebpack(config) {
     config.plugins = [
       ...config.plugins,

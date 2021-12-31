@@ -62,88 +62,91 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
-  @import "~@/styles/variables.scss";
-  .app-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
+@import "~@/styles/mixin.scss";
 
-    @include clearfix;
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
 
-    &.mobile.openSidebar {
-      position: fixed;
-      top: 0;
-    }
-  }
+  @include clearfix;
 
-  .drawer-bg {
-    position: absolute;
-    top: 0;
-    z-index: 999;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: .3;
-  }
-
-  .fixed-header {
+  &.mobile.openSidebar {
     position: fixed;
     top: 0;
-    right: 0;
-    z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
-    transition: width .28s;
   }
+}
 
-  .fixed-header-layout {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9;
-    width: 100%;
-    transition: width .28s;
-  }
+.drawer-bg {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .3;
+}
 
-  .hideSidebar .fixed-header {
-    width: calc(100% - 54px)
-  }
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - #{$sideBarWidth});
+  transition: width .28s;
+}
 
-  .mobile .fixed-header {
-    width: 100%;
-  }
+.fixed-header-layout {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: 100%;
+  transition: width .28s;
+}
 
-  .hasTagsView {
+.hideSidebar .fixed-header {
+  width: calc(100% - 54px)
+}
 
-    .app-main {
-      min-height: calc(100vh - 100px);
-    }
+.mobile .fixed-header {
+  width: 100%;
+}
 
-    .fixed-header+.app-main {
-      padding-top: 100px;
-    }
-  }
-  .app-main-layout{
-    min-height: calc(100vh - 50px);
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-  }
-  .fixed-header+.app-main-layout {
-    padding-top: 90px;
-  }
+.hasTagsView {
 
   .app-main {
-    /*50 = navbar  */
-    min-height: calc(100vh);
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    text-align: left;
+    min-height: calc(100vh - 100px);
   }
+
   .fixed-header+.app-main {
-    padding-top: 90px;
+    padding-top: 100px;
   }
+}
+
+.app-main-layout {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 50px);
+  overflow: hidden;
+  text-align: left;
+}
+
+.fixed-header+.app-main-layout {
+  padding-top: 90px;
+}
+
+.app-main {
+  ///*50 = navbar  */
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh);
+  overflow: hidden;
+  text-align: left;
+}
+
+.fixed-header+.app-main {
+  padding-top: 90px;
+}
 </style>
