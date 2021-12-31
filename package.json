@@ -1,8 +1,8 @@
 {
-  "name": "name",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "description",
-  "author": "author",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "scripts": {
     "mock": "cd mock && node --experimental-modules ./mock.mjs",
     "dev:mock": "concurrently \"vue-cli-service serve\" \"npm run mock\"",
