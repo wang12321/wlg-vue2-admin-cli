@@ -45,18 +45,19 @@ module.exports = {
     }
   },
   configureWebpack(config) {
-    config.plugins = [
-      ...config.plugins,
-      // eslint-disable-next-line new-cap
-      new autoRouter({
-        pages: 'src/views/autoRouter',
-        importPrefix: '@/views/autoRouter',
-        routePath: 'src/router/routes.js'
-      })
-    ]
     // 关闭生产环境console
     if (process.env.NODE_ENV.indexOf('production') > -1) {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+    } else {
+      config.plugins = [
+        ...config.plugins,
+        // eslint-disable-next-line new-cap
+        new autoRouter({
+          pages: 'src/views/autoRouter',
+          importPrefix: '@/views/autoRouter',
+          routePath: 'src/router/routes.js'
+        })
+      ]
     }
     const name = 'vue Admin FF'
     const resolve = {
