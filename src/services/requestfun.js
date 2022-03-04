@@ -7,6 +7,7 @@
 
 import axios from 'axios'
 import store from '@/store'
+import { whiteConfig } from './whiteList'
 
 // 声明一个 Map 用于存储每个请求的标识 和 取消函数
 const pending = new Map()
@@ -41,7 +42,8 @@ export const removePending = (config) => {
     JSON.stringify(config.params),
     JSON.stringify(config.data)
   ].join('&')
-  if (pending.has(url)) { // 如果在 pending 中存在当前请求标识，需要取消当前请求，并且移除
+  const urlConfig = config.url || ''
+  if (pending.has(url) && whiteConfig.filter(item => urlConfig.indexOf(item) > -1).length === 0) { // 如果在 pending 中存在当前请求标识，需要取消当前请求，并且移除
     const cancel = pending.get(url)
     cancel(url)
     pending.delete(url)

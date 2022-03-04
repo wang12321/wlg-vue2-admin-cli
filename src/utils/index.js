@@ -111,6 +111,7 @@ export function param2Obj(url) {
   })
   return obj
 }
+
 function judgeType(obj) {
   // tostring会返回对应不同的标签的构造函数
   const toString = Object.prototype.toString
@@ -131,7 +132,12 @@ function judgeType(obj) {
   }
   return map[toString.call(obj)]
 }
-// 深克隆
+
+/**
+ * 深克隆
+ * @param data
+ * @returns {{}|*}
+ */
 export function deepClone(data) {
   const type = judgeType(data)
   let obj
@@ -158,6 +164,13 @@ export function deepClone(data) {
   return obj
 }
 
+/**
+ * renderTip tableHeader提示信息
+ * @param createElement
+ * @param column
+ * @param tip
+ * @returns {*}
+ */
 export function renderTip(createElement, { column }, tip) {
   return createElement('span', { class: 'renderTableHead' }, [
     createElement('span', [`${column.label}`]),
@@ -179,4 +192,14 @@ export function renderTip(createElement, { column }, tip) {
  */
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
+}
+
+/**
+ * hasOwn 是不是自己本身所拥有的属性
+ * @param val
+ * @param key
+ * @returns {boolean}
+ */
+export function hasOwn(val, key) {
+  return Object.prototype.hasOwnProperty.call(val, key)
 }

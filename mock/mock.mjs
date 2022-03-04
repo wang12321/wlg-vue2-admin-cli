@@ -1,5 +1,6 @@
 import myKoa from 'ff-koa/lib/mock.js'
 const router = myKoa.router
+myKoa.staticPath('../dist')
 
 const tokens = {
   superadmin: {
