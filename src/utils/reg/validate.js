@@ -7,7 +7,7 @@
     * 2、 newPwd: [REQUIRED('请输入新密码'), { validator: RULES.password }],
  */
 
-import { regExp } from './regExp'
+import { regExp } from './reg-exp'
 
 export const RULES = {
   // 用户名

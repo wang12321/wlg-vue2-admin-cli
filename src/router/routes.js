@@ -1,10 +1,10 @@
 import Layout from '@/layout'
 export default [
   {
-    path: '/system',
-    name: 'system',
+    path: '/reference-template',
+    name: 'reference-template',
     meta: {
-      title: '系统管理',
+      title: '参考模板',
       icon: 'form',
       permissionArray: [1, 2, 3],
       sortIndex: 1,
@@ -15,45 +15,33 @@ export default [
     component: Layout,
     children: [
       {
-        path: 'menu',
-        name: 'menu',
+        path: 'template-one',
+        name: 'template-one',
         meta: {
-          title: '菜单管理',
+          title: '模板1',
           icon: 'form',
           permissionArray: [1, 2, 3],
           sortIndex: 2,
           newTime: '2022-05-20'
         },
         index: 20,
-        component: () => import('@/views/autoRouter/system/menu.vue'),
+        component: () =>
+          import('@/views/auto-router/reference-template/template-one.vue'),
         children: []
       },
       {
-        path: 'user',
-        name: 'user',
+        path: 'template-two',
+        name: 'template-two',
         meta: {
-          title: '用户管理',
+          title: '模板2',
           icon: 'form',
           permissionArray: [1, 2, 3],
-          sortIndex: 1,
+          sortIndex: 2,
           newTime: '2022-05-20'
         },
-        index: 10,
-        component: () => import('@/views/autoRouter/system/user.vue'),
-        children: []
-      },
-      {
-        path: 'role/:id',
-        name: 'role_id',
-        meta: {
-          title: '角色管理',
-          icon: 'form',
-          permissionArray: [1, 2, 3],
-          sortIndex: 3,
-          newTime: '2022-05-20'
-        },
-        index: 30,
-        component: () => import('@/views/autoRouter/system/role_id/index.vue'),
+        index: 20,
+        component: () =>
+          import('@/views/auto-router/reference-template/template-two.vue'),
         children: []
       }
     ]

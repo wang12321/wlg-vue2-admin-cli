@@ -53,8 +53,8 @@ module.exports = {
         ...config.plugins,
         // eslint-disable-next-line new-cap
         new autoRouter({
-          pages: 'src/views/autoRouter',
-          importPrefix: '@/views/autoRouter',
+          pages: 'src/views/auto-router',
+          importPrefix: '@/views/auto-router',
           routePath: 'src/router/routes.js'
         })
       ]

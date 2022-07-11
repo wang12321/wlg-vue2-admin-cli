@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import ResizeMixin from './mixin/ResizeHandler'
+import ResizeMixin from './mixin/resize-handler'
 import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/sidebar'
 
 export default {
   name: 'Layout',

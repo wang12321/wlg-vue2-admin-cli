@@ -28,9 +28,9 @@ import { renderTip } from '@/utils'
 import { Message } from 'element-ui'
 
 export default {
-  name: 'Menu',
+  name: 'TemplateOne',
   meta: {
-    title: '菜单管理',
+    title: '模板1',
     icon: 'form',
     permissionArray: [1, 2, 3],
     sortIndex: 2,
@@ -162,13 +162,13 @@ export default {
   },
   mounted() {
     this.formData.datePicker = this.dateData
-    this.updata()
+    this.getDataList()
     // onclick="reloadData()"
     // window.reloadData = this.reloadData // 解决字符串模板@click无效的问题
   },
   methods: {
     // 数据请求
-    updata() {
+    getDataList() {
       this.total = 100
       this.roundCount = 200
     },
@@ -188,11 +188,11 @@ export default {
     submit() {
       this.pageData.page = 1
       this.pageKey += 1
-      this.updata()
+      this.getDataList()
     },
     // 分页
     reloadData() {
-      this.updata()
+      this.getDataList()
     },
     // 自定义合计
     getSummaries(param) {

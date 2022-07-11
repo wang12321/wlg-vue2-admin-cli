@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "name",
   "version": "1.0.0",
   "description": "{{description}}",
   "author": "{{author}}",
@@ -7,7 +7,7 @@
     "mock": "cd mock && node --experimental-modules ./mock.mjs",
     "dev:mock": "concurrently \"vue-cli-service serve\" \"npm run mock\"",
     "dev": "vue-cli-service serve",
-    "build:dev": "vue-cli-service build --mode productionDev",
+    "build:dev": "vue-cli-service build --mode production-dev",
     "build:prod": "vue-cli-service build",
     "preview": "node build/index.js --preview",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",

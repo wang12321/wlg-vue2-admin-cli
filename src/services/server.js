@@ -6,7 +6,7 @@
  */
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { addPending, removePending } from './requestfun'
+import { addPending, removePending } from './request-intercept'
 import store from '@/store'
 
 const service = axios.create({

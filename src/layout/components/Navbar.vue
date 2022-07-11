@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
-import Logo from './Sidebar/Logo'
+import Logo from './sidebar/Logo'
 import variables from '@/styles/variables.scss'
 
 export default {
