@@ -50,7 +50,7 @@ service.interceptors.response.use(
       return res
     }
   },
-  error => {
+  async error => {
     setTimeout(() => {
       store.commit('user/SET_BTNLOADING', false)
     }, 500)
@@ -70,6 +70,10 @@ service.interceptors.response.use(
         message: '登录信息过期，跳转登录页401',
         duration: 3000
       })
+      await store.dispatch('user/resetToken')
+      setTimeout(() => {
+        window.location.reload()
+      }, 3000)
     } else {
       Message({
         type: 'error',
