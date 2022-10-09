@@ -25,8 +25,7 @@ export default [
           newTime: '2022-05-20'
         },
         index: 20,
-        component: () =>
-          import('@/views/auto-router/reference-template/template-one.vue'),
+        component: () => import('@/views/auto-router/reference-template/template-one.vue'),
         children: []
       },
       {
@@ -40,8 +39,7 @@ export default [
           newTime: '2022-05-20'
         },
         index: 20,
-        component: () =>
-          import('@/views/auto-router/reference-template/template-two.vue'),
+        component: () => import('@/views/auto-router/reference-template/template-two.vue'),
         children: []
       }
     ]

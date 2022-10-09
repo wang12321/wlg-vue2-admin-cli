@@ -50,11 +50,11 @@ export default {
       },
       tableData: [{
         'union_id': 53686,
-        'union_name': '都昌乐娱联盟',
+        'union_name': '名称',
         'club_id': 150625,
-        'club_name': '都昌开心吧',
+        'club_name': '名称',
         'user_id': 35625279,
-        'user_name': '余鱼',
+        'user_name': '名称',
         'round_count': 8563,
         'is_open': true
       },
@@ -64,7 +64,7 @@ export default {
         'club_id': 555520,
         'club_name': '555520',
         'user_id': 35392059,
-        'user_name': '用力活着',
+        'user_name': '名称',
         'round_count': 8205,
         'is_open': true
       },
@@ -74,27 +74,27 @@ export default {
         'club_id': 459431,
         'club_name': '459431',
         'user_id': 38459088,
-        'user_name': '不开心',
+        'user_name': '名称',
         'round_count': 6948,
         'is_open': true
       }],
       tableColumn: [
         {
-          label: '联赛昵称（ID）',
+          label: '昵称（ID）',
           prop: 'club_name',
           align: 'left',
           formatter: (row) => {
             return `<span>${row.union_name}</span><span> ${row.union_id !== 0 ? '(' + row.union_id + ')' : '/'}</span>`
           }
         }, {
-          label: '竞技赛场昵称(ID)',
+          label: '昵称2(ID)',
           prop: 'union_name',
           align: 'left',
           formatter: (row) => {
             return `<span>${row.club_name}</span><span> ${row.club_id !== 0 ? '(' + row.club_id + ')' : '/'}</span>`
           }
         }, {
-          label: '竞技赛场主昵称（ID）',
+          label: '昵称3（ID）',
           prop: 'user_name',
           align: 'left',
 
@@ -114,11 +114,11 @@ export default {
           }
         },
         {
-          label: '竞技赛场开放',
+          label: '开放',
           prop: 'lrsj',
           align: 'left',
           showTip: (h, { column }) => {
-            return renderTip(h, { column }, '右滑打开按钮，开启竞技赛场')
+            return renderTip(h, { column }, '右滑打开按钮，开启')
           },
           render: (h, params) => {
             return h('el-switch', { props: { 'active-color': '#13ce66', 'inactive-color': '#ff4949' },
@@ -154,9 +154,9 @@ export default {
     },
     formOptions() {
       return [
-        { titleShow: true, title: '联赛id/竞技赛场id/竞技赛场主id', placeholder: '联赛id/竞技赛场id/竞技赛场主id', key: 'object_id', type: 'input', clearable: true },
+        { titleShow: true, title: 'ID', placeholder: 'ID', key: 'object_id', type: 'input', clearable: true },
         { titleShow: true, title: '', key: 'datePicker', type: 'datePicker', isAdvanced: true, change: this.changeDate },
-        { titleShow: true, title: '', key: 'unionType', type: 'select', options: [{ value: 'all', label: '全部' }, { value: 'union', label: '联赛' }, { value: 'club', label: '单竞技赛场' }], label: 'label', value: 'value' }
+        { titleShow: true, title: '', key: 'unionType', type: 'select', options: [{ value: 'all', label: '全部' }, { value: 'union', label: '选项1' }, { value: 'club', label: '选项2' }], label: 'label', value: 'value' }
       ]
     }
   },

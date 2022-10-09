@@ -72,16 +72,16 @@ export default {
         }
       ],
       tableData: [{
-        tzmc: '游戏',
+        tzmc: '名称',
         lrsj: '2020-02-02',
         xgsj: '2020-03-03',
-        gxlx: '全平台'
+        gxlx: '平台'
       },
       {
-        tzmc: '游戏1',
+        tzmc: '名称1',
         lrsj: '2020-02-02',
         xgsj: '2020-03-03',
-        gxlx: '全平台'
+        gxlx: '平台'
       }]
     }
   },
