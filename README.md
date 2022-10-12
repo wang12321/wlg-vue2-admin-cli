@@ -31,7 +31,7 @@ ff2 list
 ```
 2、公共函数库：js-utils-lc
 
-3、公共组件库：vue-ele-component-zonst
+3、公共组件库：vue-ele-component-ff
 
 ### 六、项目的安装指南
 安装依赖
