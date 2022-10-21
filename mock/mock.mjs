@@ -1,7 +1,7 @@
 import myKoa from 'ff-koa/lib/mock.js'
 const router = myKoa.router
 myKoa.staticPath('../dist')
-
+import './system.mjs'
 const tokens = {
   superadmin: {
     token: 'superadmin-token'
@@ -71,7 +71,10 @@ router.post('/sw/user/login', ctx => {
   const token = tokens[username]
   ctx.body = fhcode(token)
 })
-
+// 登入
+router.post('/v1/auth/menu/queryMenuByPage', ctx => {
+  ctx.body = {}
+})
 // 用户信息
 router.post('/sw/user/info', ctx => {
   const { token } = ctx.request.body
@@ -101,3 +104,4 @@ function fhcode(obj, msg, code) {
     data: obj || {}
   }
 }
+

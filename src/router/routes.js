@@ -43,5 +43,84 @@ export default [
         children: []
       }
     ]
+  },
+  {
+    path: '/system-manager',
+    name: 'system-manager',
+    meta: {
+      title: '系统管理',
+      icon: 'form'
+    },
+    index: 99,
+    alwaysShow: false,
+    component: Layout,
+    children: [
+      {
+        path: 'menu-manager',
+        name: 'menu-manager',
+        meta: {
+          title: '菜单管理',
+          icon: 'form',
+          sortIndex: 3
+        },
+        index: 30,
+        component: () => import('@/views/auto-router/system-manager/menu-manager/index.vue'),
+        children: []
+      },
+      {
+        path: 'role-manager',
+        name: 'role-manager',
+        meta: {
+          title: '角色管理',
+          icon: 'form',
+          sortIndex: 3
+        },
+        index: 30,
+        component: () => import('@/views/auto-router/system-manager/role-manager/index.vue'),
+        children: []
+      },
+      {
+        path: 'user-manager',
+        name: 'user-manager',
+        meta: {
+          title: '用户管理',
+          icon: 'form',
+          sortIndex: 3
+        },
+        index: 30,
+        component: () => import('@/views/auto-router/system-manager/user-manager/index.vue'),
+        children: []
+      }
+    ]
+  },
+  {
+    path: '/test',
+    name: 'testp',
+    meta: { title: 'test', icon: 'form' },
+    index: 99,
+    alwaysShow: false,
+    component: Layout,
+    children: [
+      {
+        path: '/test',
+        name: 'test',
+        meta: { title: 'test', icon: 'form' },
+        index: 99,
+        alwaysShow: false,
+        component: () => import('@/views/auto-router/test.vue')
+      }
+    ]
   }
 ]
+
+export const routerUrl = {
+  Layout: () => import('@/layout/index'),
+  'reference-template': () => import('@/views/auto-router/reference-template/_layout.vue'),
+  'template-one': () => import('@/views/auto-router/reference-template/template-one.vue'),
+  'template-two': () => import('@/views/auto-router/reference-template/template-two.vue'),
+  'system-manager': () => import('@/views/auto-router/system-manager/_layout.vue'),
+  'menu-manager': () => import('@/views/auto-router/system-manager/menu-manager/index.vue'),
+  'role-manager': () => import('@/views/auto-router/system-manager/role-manager/index.vue'),
+  'user-manager': () => import('@/views/auto-router/system-manager/user-manager/index.vue'),
+  test: () => import('@/views/auto-router/test.vue')
+}

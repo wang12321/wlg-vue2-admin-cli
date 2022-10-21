@@ -1,5 +1,5 @@
 import { constantRoutes, asyncRouterMap } from '@/router'
-
+import { routerUrl as routerMaps } from '@/router/routes'
 /**
  * Use meta.role to determine if the current user has permission
  * @param roles
@@ -47,6 +47,30 @@ export function filterAsyncRoutes(routes, roles) {
   return res
 }
 
+// 映射服务器返回菜单与本地component
+function generateAsyncRouter(serverRouterMap, children = false) {
+  return serverRouterMap.map(item => {
+    const isParent = item.children && item.children.length > 0
+    const parent = generateRouter(item, !children && !isParent ? true : isParent, children)
+    if (isParent) {
+      parent.children = generateAsyncRouter(item.children, true)
+    } else {
+      if (!children) {
+        parent.children = [generateRouter(item, isParent, children)]
+      }
+    }
+    return parent
+  })
+}
+
+const generateRouter = (item, isParent, children) => ({
+  path: (isParent || !children) ? (item.menuCode.indexOf('/') === 0 ? item.menuCode : `/${item.menuCode}`) : item.menuCode || '',
+  name: (isParent && !children) ? item.menuCode + 'p' : item.menuCode || '',
+  alwaysShow: false,
+  meta: { title: item.menuName, icon: item.menuIcon || 'from', id: item.id, noCache: false },
+  component: isParent && !children ? routerMaps['Layout'] : routerMaps[item.menuCode] || routerMaps['']
+})
+
 const state = {
   routes: [],
   addRoutes: []
@@ -61,11 +85,20 @@ const mutations = {
 
 const actions = {
   // 根据权限生成动态路由
-  generateRoutes({ commit }, roles) {
+  generateRoutes({ commit }, menuInfo) {
     return new Promise(resolve => {
-      const accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+      if (menuInfo) {
+        console.log(1111, menuInfo)
+
+        console.log(111, generateAsyncRouter(menuInfo))
+        const accessedRoutes = generateAsyncRouter(menuInfo)
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      } else {
+        const accessedRoutes = filterAsyncRoutes(asyncRouterMap, [1])
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      }
     })
   }
 }

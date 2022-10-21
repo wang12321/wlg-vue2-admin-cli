@@ -28,13 +28,26 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: port,
-    open: true,
+    open: true, // npm run serve后自动打开页面
+    host: '127.0.0.1', // 匹配本机IP地址(默认是0.0.0.0)
+    port: port, // 开发服务器运行端口号
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+      '/v1': {
+        target: 'https://www.xgszrl.com/api/v1', // 需要跨域的地址 域名
+        ws: false,
+        changeOrigin: true, // 是否要跨域
+        pathRewrite: {
+          '/v1': ''
+        }
+      }
+
     }
   },
+
   css: {
     loaderOptions: {
       sass: {
@@ -55,7 +68,8 @@ module.exports = {
         new autoRouter({
           pages: 'src/views/auto-router',
           importPrefix: '@/views/auto-router',
-          routePath: 'src/router/routes.js'
+          routePath: 'src/router/routes.js',
+          isApiRouter: true
         })
       ]
     }

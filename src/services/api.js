@@ -7,6 +7,8 @@
 
 import request from './request'
 import apiUrl from './api-url'
+export * from './modules/system-api'
+
 const accounts = apiUrl[process.env.VUE_APP_BASE_API]
 // 模块划分
 const userUrl = accounts['userUrl']

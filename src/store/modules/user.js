@@ -1,4 +1,4 @@
-import { userModule } from '@/services/api'
+import { userModule, menuInfo } from '@/services/api'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -6,6 +6,7 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
+    btnLists: [],
     isBtnLoading: false // 全局请求状态
   }
 }
@@ -24,10 +25,50 @@ const mutations = {
   },
   SET_BTNLOADING: (state, loading) => {
     state.isBtnLoading = loading
+  },
+  SET_BTNLISTS: (state, data) => {
+    state.btnLists = data
   }
+
 }
 
+// 列表转树
+function listToTree(dataSource) {
+  dataSource = dataSource.filter(el => el.menuType === 1)
+  return dataSource
+    .filter(e => {
+      const pid = e.menuParentId
+      const resultArr = dataSource.filter(ele => {
+        if (!ele.children) {
+          ele.children = []
+        }
+        if (ele.id === pid) {
+          ele.children.push(e)
+          ele.children.sort((a, b) => a.sort - b.sort)
+          return true
+        }
+      })
+      return resultArr.length === 0
+    })
+    .sort((a, b) => a.sort - b.sort)
+}
 const actions = {
+  menuDataList({ commit }, userInfo) {
+    const { getCurrentUserMenuApi } = menuInfo
+    return new Promise((resolve, reject) => {
+      getCurrentUserMenuApi().then((res) => {
+        let menuTree = []
+        if (res && res.data) {
+          const btns = res.data.filter(el => el.menuType === 2)
+          commit('SET_BTNLISTS', btns)
+          menuTree = listToTree(res.data)
+        }
+        resolve(menuTree)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   // user login
   login({ commit }, userInfo) {
     const { postUserLoginApi } = userModule
