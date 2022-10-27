@@ -56,11 +56,11 @@ npm run build:prod
 ```
 
 ### 七、相关的文档链接
-脚手架文档：https://www.processon.com/view/link/615fa8757d9c0806d55a8067#map
+脚手架文档：https://www.processon.com/view/link/63424580e401fd3908949b03
 
-公共组件库文档：http://test.vue-ele-sb.xq5.com/?path=/story/curdexample-curdexample--curdexample
+公共组件库文档：
 
-公共函数库文档：https://have-not-bug.github.io/js-utils/
+公共函数库文档：
 ### 八、相关人员的联系方式
 第一负责人：
 
