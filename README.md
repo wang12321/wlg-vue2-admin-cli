@@ -16,10 +16,10 @@ node >= 10
 npm >= 6.7
 
 ### 五、必要的依赖准备，以及如何搭建
-1、脚手架：wlg-cli-temp
+1、脚手架：zkyc-ff-cli
 全局安装：
 ```angular2html
-npm install -g wlg-cli-temp
+npm install -g zkyc-ff-cli
 ```
 初始化构建项目
 ```
