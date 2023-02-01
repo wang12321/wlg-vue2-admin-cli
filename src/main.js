@@ -28,13 +28,23 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
-// 引入 vue-ele-component-ff css
-import 'vue-ele-component-ff/lib/index/style/index.css'
-// 全部引入 vue-ele-component-ff js
-import VueEleComponentFF from 'vue-ele-component-ff'
-// 在ElementUI后调用
-Vue.use(ElementUI).use(VueEleComponentFF)
+// // 引入 vue-ele-component-ff css
+// import 'vue-ele-component-ff/lib/index/style/index.css'
+// // 全部引入 vue-ele-component-ff js
+// import VueEleComponentFF from 'vue-ele-component-ff'
+// // 在ElementUI后调用
+// Vue.use(ElementUI).use(VueEleComponentFF)
 
+// // 引入 vue-ele-component-ff css
+// import 'vue-ele-component-ff/lib/index/style/index.css'
+// // 全部引入 vue-ele-component-ff js
+// import VueEleComponentFF from 'vue-ele-component-ff'
+//
+// // 在ElementUI后调用
+// Vue.use(ElementUI).use(VueEleComponentFF)
+
+import { setUrlToken } from '../bin/index'
+setUrlToken('', 'token_pc:1519215551661504952884c83d300c94cdd98cacf40f6374fde')
 new Vue({
   el: '#app',
   router,

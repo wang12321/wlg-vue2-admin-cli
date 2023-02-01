@@ -1,62 +1,56 @@
 <template>
   <div>
-    <userManager />
-    <!--    <el-container>-->
-    <!--      <el-header style="height: auto">-->
-    <!--        <search-form-->
-    <!--          :form-options="formOptions"-->
-    <!--          :form-data="searchData"-->
-    <!--          @submit="onTriggerQuery"-->
-    <!--        >-->
-    <!--          <template v-slot:button>-->
-    <!--            <el-button type="primary" @click="add">新增</el-button>-->
-    <!--            <el-button type="primary">批量删除</el-button>-->
-    <!--          </template>-->
-    <!--        </search-form>-->
-    <!--      </el-header>-->
-    <!--      <el-main>-->
-    <!--        <TableComponent-->
-    <!--          :table-data="tableData"-->
-    <!--          :table-column="tableColumn"-->
-    <!--          :options="options"-->
-    <!--          :operates="operates"-->
-    <!--          height="calc(100vh - 220px)"-->
-    <!--          @selection-change="handleSelectionChange"-->
-    <!--        >-->
-    <!--          <el-table-column-->
-    <!--            type="selection"-->
-    <!--            width="55"-->
-    <!--          />-->
-    <!--        </TableComponent>-->
-    <!--        <Pagination :key="pageKey" :page-data="pageData" @reloadData="handlePageChange" />-->
-    <!--      </el-main>-->
-    <!--    </el-container>-->
-    <!--    <el-dialog :visible.sync="isShowDialog" :title="isCreateData?'添加':'编辑'" width="50%">-->
-    <!--      <dialog-form-->
-    <!--        :span="12"-->
-    <!--        :form-list="formList"-->
-    <!--        :form-data="formData"-->
-    <!--        :rules="rules"-->
-    <!--        :loading="isLoading"-->
-    <!--        @submit="onSubmit"-->
-    <!--        @CANCEL="cancelClick"-->
-    <!--      />-->
-    <!--    </el-dialog>-->
+    <el-container>
+      <el-header style="height: auto">
+        <search-form
+          :form-options="formOptions"
+          :form-data="searchData"
+          @submit="onTriggerQuery"
+        >
+          <template v-slot:button>
+            <el-button type="primary" @click="add">新增</el-button>
+            <el-button type="primary">批量删除</el-button>
+          </template>
+        </search-form>
+      </el-header>
+      <el-main>
+        <TableComponent
+          :table-data="tableData"
+          :table-column="tableColumn"
+          :options="options"
+          :operates="operates"
+          height="calc(100vh - 220px)"
+          @selection-change="handleSelectionChange"
+        >
+          <el-table-column
+            type="selection"
+            width="55"
+          />
+        </TableComponent>
+        <Pagination :key="pageKey" :page-data="pageData" @reloadData="handlePageChange" />
+      </el-main>
+    </el-container>
+    <el-dialog :visible.sync="isShowDialog" :title="isCreateData?'添加':'编辑'" width="50%">
+      <dialog-form
+        :span="12"
+        :form-list="formList"
+        :form-data="formData"
+        :rules="rules"
+        :loading="isLoading"
+        @submit="onSubmit"
+        @CANCEL="cancelClick"
+      />
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { REQUIRED } from '@/utils/reg/validate'
-import { roleType } from '@/utils/type-map'
-import { usersModule } from '@/services/api'
+import { REQUIRED } from '../../utils/reg/validate'
+import { roleType } from '../../utils/type-map'
+import { usersModule } from '../../services/api'
 const { postUserQueryAdminUserByPageApi, postUserInsertOrUpdateApi } = usersModule
 export default {
   name: 'Index',
-  meta: {
-    title: '用户管理',
-    icon: 'form',
-    sortIndex: 3
-  },
   data() {
     return {
       isCreateData: true,

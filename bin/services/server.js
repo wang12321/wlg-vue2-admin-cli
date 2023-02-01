@@ -6,21 +6,16 @@
  */
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { addPending, removePending } from './request-intercept'
-import store from '@/store'
+import { tokenGlobal } from '../index'
 
 const service = axios.create({
   headers: {
-    Authorization: 'token_pc:1519215551661504952884c83d300c94cdd98cacf40f6374fde'
+    Authorization: tokenGlobal
   }
 })
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // ------------------------------------------------------------------------------------
-    removePending(config) // 在请求开始前，对之前的请求做检查取消操作
-    addPending(config) // 将当前请求添加到 pending 中
-    // ------------------------------------------------------------
     // do something before request is sent
     return config
   },
@@ -34,11 +29,6 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    removePending(response) // 在请求结束后，移除本次请求
-    setTimeout(() => {
-      store.commit('user/SET_BTNLOADING', false)
-    }, 500)
-
     const res = response.data
     if (res.errno ? Number(res.errno) !== 0 : Number(res.code) !== 200) {
       Message({
@@ -53,13 +43,6 @@ service.interceptors.response.use(
     }
   },
   async error => {
-    setTimeout(() => {
-      store.commit('user/SET_BTNLOADING', false)
-    }, 500)
-    if (axios.isCancel(error)) {
-      console.log('repeated request: ' + error.message)
-      return
-    }
     if (!error.response) {
       Message({
         message: `${error.config.url}响应失败，请刷新浏览器重试。原因${error}`,
@@ -72,10 +55,6 @@ service.interceptors.response.use(
         message: '登录信息过期，跳转登录页401',
         duration: 3000
       })
-      await store.dispatch('user/resetToken')
-      setTimeout(() => {
-        window.location.reload()
-      }, 3000)
     } else {
       Message({
         type: 'error',

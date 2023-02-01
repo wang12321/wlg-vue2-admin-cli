@@ -64,11 +64,12 @@ function generateAsyncRouter(serverRouterMap, children = false) {
 }
 
 const generateRouter = (item, isParent, children) => ({
-  path: (isParent || !children) ? (item.menuCode.indexOf('/') === 0 ? item.menuCode : `/${item.menuCode}`) : item.menuCode || '',
+  path: '/system/menu-manager',
+  // path: (isParent || !children) ? (item.menuCode.indexOf('/') === 0 ? item.menuCode : `/${item.menuCode}`) : item.menuCode || '',
   name: (isParent && !children) ? item.menuCode + 'p' : item.menuCode || '',
   alwaysShow: false,
   meta: { title: item.menuName, icon: item.menuIcon || 'from', id: item.id, noCache: false },
-  component: isParent && !children ? routerMaps['Layout'] : routerMaps[item.menuCode] || routerMaps['']
+  component: isParent && !children ? routerMaps['Layout'] : routerMaps['menu-manager'] || routerMaps['']
 })
 
 const state = {
